@@ -53,6 +53,7 @@ class MayaController extends GetxController{
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value){
       latitude.value=value.latitude;
       longitude.value=value.longitude;
+      _isLoading.value=false;
     });
 
   }
