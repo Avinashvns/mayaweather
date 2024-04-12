@@ -13,19 +13,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // instance of MayaController
   final MayaController controller = Get.put(MayaController(), permanent: true);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Obx(
+
             () => controller.checkLoading().isTrue ?
             const Center(
               child: CircularProgressIndicator(),
             ) : ListView(
               scrollDirection: Axis.vertical,
-              children: const[
+              children: [
                 SizedBox(child: HeaderWidget(),),
+                Text(controller.weatherModel.value.weather[0].id.toString()),
 
               ],
             )
