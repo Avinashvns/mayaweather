@@ -16,14 +16,15 @@ class MayaController extends GetxController{
   @override
   void onInit(){
     super.onInit();
+    if(_isLoading.isTrue){
+      getLocation();
+    }
   }
 
   @override
   void onClose() {
     super.onClose();
-    if(_isLoading.isTrue){
-      getLocation();
-    }
+
 
   }
 
@@ -54,6 +55,7 @@ class MayaController extends GetxController{
       latitude.value=value.latitude;
       longitude.value=value.longitude;
       _isLoading.value=false;
+      print("${latitude.value} and ${longitude.value}");
     });
 
   }

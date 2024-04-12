@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mayaweather/controller/maya_controller.dart';
+import 'package:mayaweather/widgets/header_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,11 +11,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // instance of MayaController
+  final MayaController controller = Get.put(MayaController(), permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Maya Weather"),
+      body: SafeArea(
+        child: Obx(
+            () => controller.checkLoading().isTrue ?
+            const Center(
+              child: CircularProgressIndicator(),
+            ) : ListView(
+              scrollDirection: Axis.vertical,
+              children: const[
+                SizedBox(child: HeaderWidget(),),
+
+              ],
+            )
+        ),
       ),
     );
   }
